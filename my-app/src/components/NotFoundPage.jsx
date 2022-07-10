@@ -1,5 +1,5 @@
 import React from 'react';
 
 export const NotFoundPage = () => {
-  return <div>NotFoundPage</div>;
+  return <div className='text-center'>NotFoundPage</div>;
 };

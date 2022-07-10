@@ -4,6 +4,5 @@ start-frontend:
 	make -C my-app start
 start:
 	make start-backend & make start-frontend
-
 deploy:
 	git push heroku main

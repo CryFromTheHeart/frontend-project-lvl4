@@ -1,40 +1,18 @@
 import { BrowserRouter as Router, Navigate } from 'react-router-dom';
-import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { LoginPage } from './components/LoginPage';
-import Login from './components/CopyLoginForm';
 import { NotFoundPage } from './components/NotFoundPage';
 import routes from './routes';
-import { AuthContext } from './contexts';
-import './App.css';
 import { useAuth } from './hooks';
-
-const AuthProvider = ({ children }) => {
-  const currentUser = JSON.parse(localStorage.getItem('user'));
-  const [user, setUser] = useState(
-    currentUser ? { username: currentUser.username } : null
-  );
-
-  const logIn = (userData) => {
-    localStorage.setItem('user', JSON.stringify(userData));
-    setUser({ username: userData.username });
-  };
-
-  const logOut = () => {
-    localStorage.removeItem('user');
-    setUser(null);
-  };
-  return (
-    <AuthContext.Provider value={{ user, logIn, logOut }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+import { ChatPage } from './components/ChatPage';
+import Navbar from './components/Navbar';
+import { RegistrationPage } from './components/RegistrationPage';
+import { ToastContainer as Toaster } from 'react-toastify';
 
 const ChoseChatOrLoginPage = () => {
   const authInfo = useAuth();
   return authInfo.user ? (
-    <div>MainPage</div>
+    <ChatPage />
   ) : (
     <Navigate to={routes.loginPagePath()} />
   );
@@ -42,18 +20,21 @@ const ChoseChatOrLoginPage = () => {
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+      <div className='d-flex flex-column h-100'>
+        <Navbar />
         <Routes>
           <Route
             path={routes.mainPagePath()}
             element={<ChoseChatOrLoginPage />}
           />
-          <Route path={routes.loginPagePath()} element={<Login />} />
+          <Route path={routes.loginPagePath()} element={<LoginPage />} />
           <Route path='*' element={<NotFoundPage />} />
+          <Route path={routes.signupPath()} element={<RegistrationPage />} />
         </Routes>
-      </Router>
-    </AuthProvider>
+      </div>
+      <Toaster />
+    </Router>
   );
 }
 

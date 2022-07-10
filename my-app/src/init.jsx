@@ -10,7 +10,7 @@ import resources from './locales';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import leoProfanity from 'leo-profanity';
 
-import { Provider as RollbarProvider } from '@rollbar/react'; // <-- Provider imports 'rollbar' for us
+/* import { Provider as RollbarProvider } from '@rollbar/react'; // <-- Provider imports 'rollbar' for us
 
 const rollbarConfig = {
   accessToken: '0ce6dec88b07487a9e7b017ddfd984f6',
@@ -19,7 +19,7 @@ const rollbarConfig = {
   payload: {
     environment: 'production',
   },
-};
+}; */
 
 const init = async () => {
   const socket = io('ws://localhost:3000');
@@ -57,17 +57,15 @@ const init = async () => {
   });
 
   return (
-    <RollbarProvider config={rollbarConfig}>
-      <Provider store={store}>
-        <I18nextProvider i18n={i18nInstance}>
-          <WebSocketsContext.Provider value={actionsWithSocket}>
-            <AuthProvider>
-              <App />
-            </AuthProvider>
-          </WebSocketsContext.Provider>
-        </I18nextProvider>
-      </Provider>
-    </RollbarProvider>
+    <Provider store={store}>
+      <I18nextProvider i18n={i18nInstance}>
+        <WebSocketsContext.Provider value={actionsWithSocket}>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </WebSocketsContext.Provider>
+      </I18nextProvider>
+    </Provider>
   );
 };
 export default init;

@@ -7,13 +7,13 @@ import { useAuth } from '../hooks';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { useRollbar } from '@rollbar/react';
+// import { useRollbar } from '@rollbar/react';
 
 export const LoginForm = () => {
   const auth = useAuth();
   const [isAuthFailed, setAuthFailed] = useState(false);
   const { t } = useTranslation();
-  const rollbar = useRollbar();
+  // const rollbar = useRollbar();
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -27,7 +27,7 @@ export const LoginForm = () => {
         auth.logIn(response.data);
         navigate(routes.mainPagePath());
       } catch (err) {
-        rollbar.error(err);
+        // rollbar.error(err);
         if (!err.isAxiosError) {
           toast.error(t('notifications.unknown'));
           return;
@@ -101,13 +101,7 @@ export const LoginPage = () => {
           <div className='col-12 col-md-8 col-xxl-6'>
             <div className='card shadow-sm'>
               <div className='card-body row p-5'>
-                <div className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
-                  <img
-                    src='../../public/images/crab.jpg'
-                    className='rounded-circle'
-                    alt='Картинка крабик'
-                  />
-                </div>
+                <div className='col-12 col-md-6 d-flex align-items-center justify-content-center'></div>
                 <LoginForm />
               </div>
               <div className='card-footer p-4'>

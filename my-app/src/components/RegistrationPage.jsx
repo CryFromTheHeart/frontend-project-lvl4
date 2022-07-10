@@ -7,13 +7,13 @@ import { useAuth } from '../hooks';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
-import { useRollbar } from '@rollbar/react';
+// import { useRollbar } from '@rollbar/react';
 
 const RegistrationForm = () => {
   const auth = useAuth();
   const [registrationFailed, setRegistrationFailed] = useState(false);
   const { t } = useTranslation();
-  const rollbar = useRollbar();
+  // const rollbar = useRollbar();
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -49,7 +49,7 @@ const RegistrationForm = () => {
         auth.logIn(response.data);
         navigate(routes.mainPagePath());
       } catch (err) {
-        rollbar.error(err);
+        // rollbar.error(err);
         if (err.response.status === 409) {
           setRegistrationFailed(true);
         } else {

@@ -16,6 +16,7 @@ const rollbarConfig = {
   accessToken: '0ce6dec88b07487a9e7b017ddfd984f6',
   captureUncaught: true,
   captureUnhandledRejections: true,
+  
   payload: {
     environment: 'production',
   },

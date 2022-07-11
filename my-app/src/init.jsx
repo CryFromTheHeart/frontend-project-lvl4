@@ -99,7 +99,7 @@ const init = async () => {
   return (
     <Provider store={store}>
       <I18nextProvider i18n={i18nInstance}>
-        <WebSocketsContext.Provider value={actionsWithSocket}>
+        <WebSocketsContext.Provider value={api}>
           <AuthProvider>
             <App />
           </AuthProvider>

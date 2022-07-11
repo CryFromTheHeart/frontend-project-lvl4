@@ -19,6 +19,7 @@ export const NewMessageForm = ({ channel }) => {
 
   const apiResponseHandle = (response) => {
     if (response.status === 'ok') {
+      console.log(response.status);
       return response.data;
     } else {
       throw new Error(123);
@@ -35,6 +36,7 @@ export const NewMessageForm = ({ channel }) => {
     },
     validationSchema,
     onSubmit: async ({ body }) => {
+      console.log(body);
       const filterMessage = leoProfanity.clean(body);
       const message = {
         channelId: channel.id,
@@ -43,6 +45,7 @@ export const NewMessageForm = ({ channel }) => {
       };
       try {
         await sendMessage(message, apiResponseHandle);
+        console.log(message);
         formik.resetForm();
       } catch (e) {}
       formik.setSubmitting(false);

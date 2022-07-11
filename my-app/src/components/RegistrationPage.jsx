@@ -57,7 +57,6 @@ const RegistrationForm = () => {
         }
       }
     },
-    validateOnChange: false,
   });
 
   return (

@@ -16,7 +16,7 @@ const validationSchema = yup.object().shape({
 export const NewMessageForm = ({ channel }) => {
   const { user } = useAuth();
   const { sendMessage } = useWebSockets();
-  const inputRef = useRef();
+  const inputRef = useRef(null);
   const { username } = user;
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export const NewMessageForm = ({ channel }) => {
           placeholder='Введите сообщение...'
           className='border-0 p-0 ps-2'
         />
-        <Button variant='group-vertical' type='submit'>
+        <Button variant='group-vertical' type='submit' disabled={isInvalid}>
           <ArrowRightSquare size={20} />
           <span className='visually-hidden'>Отправить</span>
         </Button>

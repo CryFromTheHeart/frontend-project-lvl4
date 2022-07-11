@@ -70,11 +70,10 @@ export const NewMessageForm = ({ channel }) => {
           value={formik.values.body}
           name='body'
           aria-label='Новое сообщение'
-          disabled={formik.isSubmitting}
           placeholder='Введите сообщение...'
           className='border-0 p-0 ps-2'
         />
-        <Button variant='group-vertical' type='submit'>
+        <Button variant='group-vertical' type='submit' disabled={isInvalid}>
           <ArrowRightSquare size={20} />
           <span className='visually-hidden'>Отправить</span>
         </Button>

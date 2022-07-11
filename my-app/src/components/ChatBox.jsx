@@ -8,7 +8,9 @@ import { useTranslation } from 'react-i18next';
 const Message = ({ body, username }) => {
   return (
     <div className='text-break mb-2'>
-      <b>{username}:</b> {body}
+      <b>{username}</b>
+      {': '}
+      {body}
     </div>
   );
 };

@@ -33,7 +33,7 @@ const init = async () => {
     resources,
   });
 
-  const withAcknowledgement =
+  /* const withAcknowledgement =
     (socketFunc) =>
     (...args) =>
       new Promise((resolve, reject) => {
@@ -70,7 +70,7 @@ const init = async () => {
     removeChannel: withAcknowledgement((...args) =>
       socket.volatile.emit('removeChannel', ...args)
     ),
-  };
+  }; */
 
   const actionsWithSocket = {
     sendMessage: (message) => socket.volatile.emit('newMessage', message),
@@ -99,7 +99,7 @@ const init = async () => {
   return (
     <Provider store={store}>
       <I18nextProvider i18n={i18nInstance}>
-        <WebSocketsContext.Provider value={api}>
+        <WebSocketsContext.Provider value={actionsWithSocket}>
           <AuthProvider>
             <App />
           </AuthProvider>

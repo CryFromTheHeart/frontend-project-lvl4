@@ -16,7 +16,7 @@ const rollbarConfig = {
   accessToken: '0ce6dec88b07487a9e7b017ddfd984f6',
   captureUncaught: true,
   captureUnhandledRejections: true,
-  
+
   payload: {
     environment: 'production',
   },
@@ -47,8 +47,7 @@ const init = async () => {
           if (state !== 'pending') return;
 
           clearTimeout(timer);
-          const form = document.querySelector('#messages-box');
-          form.innerHTML = response.status;
+
           if (response.status === 'ok') {
             state = 'resolved';
             resolve(response.data);

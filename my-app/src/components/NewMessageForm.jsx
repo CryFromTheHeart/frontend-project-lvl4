@@ -6,6 +6,8 @@ import { ArrowRightSquare } from 'react-bootstrap-icons';
 import { useEffect } from 'react';
 import { useAuth, useWebSockets } from '../hooks';
 import leoProfanity from 'leo-profanity';
+import { useDispatch } from 'react-redux';
+import { actions } from '../slices';
 
 const validationSchema = yup.object().shape({
   body: yup.string().trim(),
@@ -16,6 +18,7 @@ export const NewMessageForm = ({ channel }) => {
   const { sendMessage } = useWebSockets();
   const inputRef = useRef();
   const { username } = user;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -36,7 +39,7 @@ export const NewMessageForm = ({ channel }) => {
       };
       try {
         await sendMessage(message);
-
+        dispatch(actions.messagesAddOne(message));
         formik.resetForm();
       } catch (e) {}
       formik.setSubmitting(false);

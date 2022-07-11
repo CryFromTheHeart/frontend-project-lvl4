@@ -74,7 +74,7 @@ export const NewMessageForm = ({ channel }) => {
           placeholder='Введите сообщение...'
           className='border-0 p-0 ps-2'
         />
-        <Button variant='group-vertical' type='submit' disabled={isInvalid}>
+        <Button variant='group-vertical' type='submit'>
           <ArrowRightSquare size={20} />
           <span className='visually-hidden'>Отправить</span>
         </Button>

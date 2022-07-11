@@ -33,7 +33,10 @@ const init = async () => {
   });
 
   const actionsWithSocket = {
-    sendMessage: (message) => socket.emit('newMessage', message),
+    sendMessage: (message, handle) =>
+      socket.volatile.emit('newMessage', message, (response) =>
+        handle(response)
+      ),
     addChannel: (channel) => socket.emit('newChannel', channel),
     removeChannel: (channel) => socket.emit('removeChannel', channel),
     renameChannel: (channel) => socket.emit('renameChannel', channel),

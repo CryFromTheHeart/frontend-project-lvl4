@@ -17,6 +17,14 @@ export const NewMessageForm = ({ channel }) => {
   const inputRef = useRef();
   const { username } = user;
 
+  const apiResponseHandle = (response) => {
+    if (response.status === 'ok') {
+      return response.data;
+    } else {
+      throw new Error(123);
+    }
+  };
+
   useEffect(() => {
     inputRef.current.focus();
   }, [channel]);
@@ -34,7 +42,7 @@ export const NewMessageForm = ({ channel }) => {
         username,
       };
       try {
-        await sendMessage(message);
+        await sendMessage(message, apiResponseHandle);
         formik.resetForm();
       } catch (e) {}
       formik.setSubmitting(false);

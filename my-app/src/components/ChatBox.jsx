@@ -2,7 +2,6 @@ import React from 'react';
 import { NewMessageForm } from './NewMessageForm';
 import { useSelector } from 'react-redux';
 import { getCurrentChannel, getMessagesForCurrentChannel } from '../selectors';
-import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 
 const Message = ({ body, username }) => {

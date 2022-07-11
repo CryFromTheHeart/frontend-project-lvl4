@@ -55,7 +55,7 @@ export const NewMessageForm = ({ channel }) => {
           onBlur={formik.handleBlur}
           value={formik.values.body}
           name='body'
-          aria-label='Новое Сообщение'
+          aria-label='Новое сообщение'
           disabled={formik.isSubmitting}
           placeholder='Введите сообщение...'
           className='border-0 p-0 ps-2'

@@ -44,7 +44,7 @@ export const NewMessageForm = ({ channel }) => {
         username,
       };
       try {
-        await sendMessage(message, apiResponseHandle);
+        await sendMessage(message);
         console.log(message);
         formik.resetForm();
       } catch (e) {}

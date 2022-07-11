@@ -14,7 +14,7 @@ const validationSchema = yup.object().shape({
 export const NewMessageForm = ({ channel }) => {
   const { user } = useAuth();
   const { sendMessage } = useWebSockets();
-
+  const inputRef = useRef();
   const { username } = user;
 
   useEffect(() => {
@@ -33,12 +33,15 @@ export const NewMessageForm = ({ channel }) => {
         body: filterMessage,
         username,
       };
-      await sendMessage(message);
-      formik.resetForm();
+      try {
+        await sendMessage(message);
+        formik.resetForm();
+      } catch (e) {}
+      formik.setSubmitting(false);
+      inputRef.current.focus();
     },
+    validateOnBlur: false,
   });
-
-  const inputRef = useRef();
 
   const isInvalid = !formik.dirty || !formik.isValid;
 

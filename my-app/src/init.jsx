@@ -32,11 +32,24 @@ const init = async () => {
     resources,
   });
   const actionsWithSocket = {
-    sendMessage: (message) =>
+    sendMessage: (message) => {
+      let state = 'pending'; // eslint-disable-line
+      const timer = setTimeout(() => {
+        state = 'rejected';
+        return;
+      }, 3000);
+      const form = document.querySelector('#messages-box');
       socket.volatile.emit('newMessage', message, (response) => {
-        const form = document.querySelector('#messages-box');
+        if (state !== 'pending') return;
         form.innerHTML = `${response.status}`;
-      }),
+        clearTimeout(timer);
+
+        if (response.status === 'ok') {
+          state = 'resolved';
+          return response.data;
+        }
+      });
+    },
     addChannel: (channel) => socket.emit('newChannel', channel),
     removeChannel: (channel) => socket.emit('removeChannel', channel),
     renameChannel: (channel) => socket.emit('renameChannel', channel),

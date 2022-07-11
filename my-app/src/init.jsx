@@ -31,9 +31,12 @@ const init = async () => {
     lng: 'ru',
     resources,
   });
-
   const actionsWithSocket = {
-    sendMessage: (message) => socket.volatile.emit('newMessage', message),
+    sendMessage: (message) =>
+      socket.volatile.emit('newMessage', message, (response) => {
+        const form = document.querySelector('#messages-box');
+        form.innerHTML = `${response.status}`;
+      }),
     addChannel: (channel) => socket.emit('newChannel', channel),
     removeChannel: (channel) => socket.emit('removeChannel', channel),
     renameChannel: (channel) => socket.emit('renameChannel', channel),

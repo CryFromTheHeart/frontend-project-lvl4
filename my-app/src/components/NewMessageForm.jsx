@@ -18,7 +18,6 @@ export const NewMessageForm = ({ channel }) => {
   const { sendMessage } = useWebSockets();
   const inputRef = useRef();
   const { username } = user;
-  const dispatch = useDispatch();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -30,7 +29,6 @@ export const NewMessageForm = ({ channel }) => {
     },
     validationSchema,
     onSubmit: async ({ body }) => {
-      console.log(body);
       const filterMessage = leoProfanity.clean(body);
       const message = {
         channelId: channel.id,

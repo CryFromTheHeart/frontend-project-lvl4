@@ -23,7 +23,6 @@ export const LoginForm = () => {
     },
     onSubmit: async (values) => {
       try {
-        console.log(123);
         const response = await axios.post(routes.loginPath(), values);
         auth.logIn(response.data);
         navigate(routes.mainPagePath());

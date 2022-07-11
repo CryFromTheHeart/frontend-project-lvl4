@@ -39,7 +39,7 @@ export const NewMessageForm = ({ channel }) => {
       };
       try {
         await sendMessage(message);
-        dispatch(actions.messagesAddOne(message));
+
         formik.resetForm();
       } catch (e) {}
       formik.setSubmitting(false);

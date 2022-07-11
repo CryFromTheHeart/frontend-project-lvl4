@@ -5,13 +5,7 @@ import { getCurrentChannel, getMessagesForCurrentChannel } from '../selectors';
 import { useTranslation } from 'react-i18next';
 
 const Message = ({ body, username }) => {
-  return (
-    <div className='text-break mb-2'>
-      <b>{username}</b>
-      {': '}
-      {body}
-    </div>
-  );
+  return <div className='text-break mb-2'>{body}</div>;
 };
 
 export const ChatBox = () => {

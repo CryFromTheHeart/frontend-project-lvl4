@@ -1,5 +1,7 @@
 import React from 'react';
 
-export const NotFoundPage = () => (
+const NotFoundPage = () => (
   <div className="text-center">NotFoundPage 404</div>
 );
+
+export default NotFoundPage;

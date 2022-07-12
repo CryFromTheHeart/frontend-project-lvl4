@@ -4,7 +4,6 @@ import { WebSocketsContext } from '../contexts';
 
 import { actions } from '../slices';
 
-
 const WebSocketsProvider = ({ children, socket }) => {
   const dispatch = useDispatch();
 
@@ -25,4 +24,4 @@ const WebSocketsProvider = ({ children, socket }) => {
   );
 };
 
-export default WebSocketsContext;
+export default WebSocketsProvider;

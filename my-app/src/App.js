@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import { ToastContainer as Toaster } from 'react-toastify';
 import { LoginPage } from './components/LoginPage';
-import { NotFoundPage } from './components/NotFoundPage';
+import NotFoundPage from './components/NotFoundPage';
 import routes from './routes';
 import { useAuth } from './hooks';
 import ChatPage from './components/ChatPage';

@@ -31,6 +31,7 @@ const ru = {
       regLink: 'Регистрация',
     },
     channels: {
+      channelsDr: 'Управление каналом',
       header: 'Каналы',
       dropDown: {
         rename: 'Переименовать канал',

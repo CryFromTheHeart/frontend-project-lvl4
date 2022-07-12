@@ -37,7 +37,9 @@ export const Channel = ({ channel, current }) => {
             {name}
           </Button>
 
-          <Dropdown.Toggle split id='dropdown-split' variant={variant} />
+          <Dropdown.Toggle split id='dropdown-split' variant={variant}>
+            <span className='visually-hidden'>{t('channels.channelsDr')}</span>
+          </Dropdown.Toggle>
 
           <Dropdown.Menu>
             <Dropdown.Item onClick={handleRenameChannel(id)}>

@@ -4,7 +4,7 @@ start-frontend:
 	make -C my-app start
 start:
 	make start-backend & make start-frontend
-deploy:
+deplos:
 	git push heroku main
 install:
 	npm ci

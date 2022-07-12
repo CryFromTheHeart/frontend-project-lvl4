@@ -1,5 +1,5 @@
 start-backend:
-	npx start-server -p 5001 -s ./my-app/build
+	npx start-server -p 5001
 start-frontend:
 	make -C my-app start
 start:

@@ -23,7 +23,7 @@ const rollbarConfig = {
 }; */
 
 const init = async () => {
-  const socket = io('ws://localhost:3000');
+  const socket = io();
 
   leoProfanity.loadDictionary('ru');
 
@@ -34,7 +34,7 @@ const init = async () => {
   });
 
   const actionsWithSocket = {
-    sendMessage: (message) => socket.volatile.emit('newMessage', message),
+    sendMessage: (message) => socket.emit('newMessage', message),
     addChannel: (channel) => socket.emit('newChannel', channel),
     removeChannel: (channel) => socket.emit('removeChannel', channel),
     renameChannel: (channel) => socket.emit('renameChannel', channel),

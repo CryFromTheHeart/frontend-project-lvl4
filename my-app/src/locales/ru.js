@@ -52,7 +52,7 @@ const ru = {
       cancelButton: 'Отменить',
       addChannel: {
         header: 'Добавить канал',
-        label: 'Название канала',
+        label: 'Имя канала',
       },
       removeChannel: {
         header: 'Добавить канал',
@@ -61,7 +61,7 @@ const ru = {
       },
       renameChannel: {
         header: 'Переименовать канал',
-        labelChannelName: 'Название канала',
+        labelChannelName: 'Имя канала',
       },
     },
     notifications: {

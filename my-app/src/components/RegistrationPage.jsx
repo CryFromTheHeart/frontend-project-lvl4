@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-import routes from '../routes';
-import { useAuth } from '../hooks';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
+import routes from '../routes';
+import { useAuth } from '../hooks';
 // import { useRollbar } from '@rollbar/react';
 
 const RegistrationForm = () => {
@@ -62,86 +62,86 @@ const RegistrationForm = () => {
   return (
     <Form
       onSubmit={formik.handleSubmit}
-      className='col-12 col-md-6 mt-3 mt-mb-0'
+      className="col-12 col-md-6 mt-3 mt-mb-0"
     >
-      <h1 className='text-center mb-4'>{t('registrationForm.header')}</h1>
-      <Form.Group className='form-floating mb-3'>
+      <h1 className="text-center mb-4">{t('registrationForm.header')}</h1>
+      <Form.Group className="form-floating mb-3">
         <Form.Control
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.username}
-          name='username'
-          id='username'
+          name="username"
+          id="username"
           isInvalid={
             (formik.errors.username && formik.touched.username) ||
             registrationFailed
           }
-          autoComplete='username'
+          autoComplete="username"
           placeholder={t('registrationForm.labelUsername')}
         />
-        <Form.Label htmlFor='username'>
+        <Form.Label htmlFor="username">
           {t('registrationForm.labelUsername')}
         </Form.Label>
         {formik.errors.username && formik.touched.username && (
-          <Form.Control.Feedback type='invalid' tooltip>
+          <Form.Control.Feedback type="invalid" tooltip>
             {formik.errors.username}
           </Form.Control.Feedback>
         )}
       </Form.Group>
-      <Form.Group className='form-floating mb-4'>
+      <Form.Group className="form-floating mb-4">
         <Form.Control
-          type='password'
+          type="password"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.password}
-          name='password'
-          id='password'
+          name="password"
+          id="password"
           isInvalid={
             (formik.errors.password && formik.touched.password) ||
             registrationFailed
           }
-          autoComplete='current-password'
+          autoComplete="current-password"
           placeholder={t('registrationForm.labelPassword')}
         />
-        <Form.Label htmlFor='password'>
+        <Form.Label htmlFor="password">
           {t('registrationForm.labelPassword')}
         </Form.Label>
         {formik.errors.password && formik.touched.password && (
-          <Form.Control.Feedback type='invalid' tooltip>
+          <Form.Control.Feedback type="invalid" tooltip>
             {formik.errors.password}
           </Form.Control.Feedback>
         )}
       </Form.Group>
-      <Form.Group className='form-floating mb-4'>
+      <Form.Group className="form-floating mb-4">
         <Form.Control
-          type='password'
+          type="password"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.confirmPassword}
-          name='confirmPassword'
-          id='confirmPassword'
+          name="confirmPassword"
+          id="confirmPassword"
           isInvalid={
             (formik.errors.confirmPassword && formik.touched.confirmPassword) ||
             registrationFailed
           }
-          autoComplete='current-confirmPassword'
+          autoComplete="current-confirmPassword"
           placeholder={t('registrationForm.labelConfirmPassword')}
         />
-        <Form.Label htmlFor='confirmPassword'>
+        <Form.Label htmlFor="confirmPassword">
           {t('registrationForm.labelConfirmPassword')}
         </Form.Label>
         {formik.errors.confirmPassword && formik.touched.confirmPassword && (
-          <Form.Control.Feedback type='invalid' tooltip>
+          <Form.Control.Feedback type="invalid" tooltip>
             {formik.errors.confirmPassword}
           </Form.Control.Feedback>
         )}
         {registrationFailed && (
-          <Form.Control.Feedback type='invalid' tooltip>
+          <Form.Control.Feedback type="invalid" tooltip>
             {t('formValidation.username.exist')}
           </Form.Control.Feedback>
         )}
       </Form.Group>
-      <Button type='submit' variant='outline-primary' className='w-100 mb-3'>
+      <Button type="submit" variant="outline-primary" className="w-100 mb-3">
         {t('registrationForm.submitButton')}
       </Button>
     </Form>
@@ -150,12 +150,12 @@ const RegistrationForm = () => {
 
 export const RegistrationPage = () => {
   return (
-    <div className='d-flex flex-column h-100'>
-      <div className='container-fluid h-100'>
-        <div className='row justify-content-center align-content-center h-100'>
-          <div className='col-12 col-md-8 col-xxl-6'>
-            <div className='card shadow-sm'>
-              <div className='card-body row p-5'>
+    <div className="d-flex flex-column h-100">
+      <div className="container-fluid h-100">
+        <div className="row justify-content-center align-content-center h-100">
+          <div className="col-12 col-md-8 col-xxl-6">
+            <div className="card shadow-sm">
+              <div className="card-body row p-5">
                 <RegistrationForm />
               </div>
             </div>

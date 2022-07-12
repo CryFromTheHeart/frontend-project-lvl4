@@ -1,14 +1,13 @@
 import { Provider } from 'react-redux';
-import App from './App';
-import AuthProvider from './providers/AuthProviders';
-import store, { actions } from './slices/index';
-import { WebSocketsContext } from './contexts';
-
 import { io } from 'socket.io-client';
 import i18n from 'i18next';
 import resources from './locales';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import leoProfanity from 'leo-profanity';
+import App from './App';
+import AuthProvider from './providers/AuthProviders';
+import store, { actions } from './slices/index';
+import { WebSocketsContext } from './contexts';
 
 /* import { Provider as RollbarProvider } from '@rollbar/react'; // <-- Provider imports 'rollbar' for us
 

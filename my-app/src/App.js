@@ -1,13 +1,17 @@
-import { BrowserRouter as Router, Navigate } from 'react-router-dom';
-import { Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from 'react-router-dom';
+import { ToastContainer as Toaster } from 'react-toastify';
 import { LoginPage } from './components/LoginPage';
 import { NotFoundPage } from './components/NotFoundPage';
 import routes from './routes';
 import { useAuth } from './hooks';
-import { ChatPage } from './components/ChatPage';
+import ChatPage from './components/ChatPage';
 import Navbar from './components/Navbar';
 import { RegistrationPage } from './components/RegistrationPage';
-import { ToastContainer as Toaster } from 'react-toastify';
 
 const ChoseChatOrLoginPage = () => {
   const authInfo = useAuth();
@@ -21,7 +25,7 @@ const ChoseChatOrLoginPage = () => {
 function App() {
   return (
     <Router>
-      <div className='d-flex flex-column h-100'>
+      <div className="d-flex flex-column h-100">
         <Navbar />
         <Routes>
           <Route
@@ -29,7 +33,7 @@ function App() {
             element={<ChoseChatOrLoginPage />}
           />
           <Route path={routes.loginPagePath()} element={<LoginPage />} />
-          <Route path='*' element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
           <Route path={routes.signupPath()} element={<RegistrationPage />} />
         </Routes>
       </div>

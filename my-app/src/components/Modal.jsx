@@ -2,13 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import { Modal as BootstrapModal, Form, Button } from 'react-bootstrap';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { getChannelById, getChannelNames, getModalInfo } from '../selectors';
-import { actions } from '../slices';
 import { useFormik } from 'formik';
-import { useWebSockets } from '../hooks';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
+import { getChannelById, getChannelNames, getModalInfo } from '../selectors';
+import { actions } from '../slices';
+import { useWebSockets } from '../hooks';
 
 const AddChannelModal = ({ handleClose }) => {
   const { t } = useTranslation();
@@ -50,29 +50,29 @@ const AddChannelModal = ({ handleClose }) => {
       </BootstrapModal.Header>
       <BootstrapModal.Body>
         <Form onSubmit={formik.handleSubmit}>
-          <Form.Group className='mb-3'>
+          <Form.Group className="mb-3">
             <Form.Control
-              type='input'
+              type="input"
               value={formik.values.name}
               onChange={formik.handleChange}
               isInvalid={formik.errors.name && formik.touched.name}
               disabled={formik.isSubmitting}
-              name='name'
-              id='name'
+              name="name"
+              id="name"
               autoFocus
             />
-            <Form.Label className='visually-hidden' htmlFor='name'>
+            <Form.Label className="visually-hidden" htmlFor="name">
               {t('modals.addChannel.label')}
             </Form.Label>
-            <Form.Control.Feedback type='invalid'>
+            <Form.Control.Feedback type="invalid">
               {formik.errors.name}
             </Form.Control.Feedback>
           </Form.Group>
-          <div className='d-flex justify-content-end'>
-            <Button variant='secondary' onClick={handleClose}>
+          <div className="d-flex justify-content-end">
+            <Button variant="secondary" onClick={handleClose}>
               {t('modals.cancelButton')}
             </Button>
-            <Button variant='primary' type='submit'>
+            <Button variant="primary" type="submit">
               {t('modals.submitButton')}
             </Button>
           </div>
@@ -91,7 +91,9 @@ const RemoveChannelModal = ({ handleClose }) => {
     try {
       await removeChannel({ id: extra });
       toast.success(t('notifications.removeChannel'));
-    } catch (e) {}
+    } catch {
+      toast.error('Что то пошло не так');
+    }
     handleClose();
   };
 
@@ -106,10 +108,10 @@ const RemoveChannelModal = ({ handleClose }) => {
         {t('modals.removeChannel.body')}
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
-        <Button variant='secondary' onClick={handleClose}>
+        <Button variant="secondary" onClick={handleClose}>
           {t('modals.cancelButton')}
         </Button>
-        <Button variant='danger' onClick={handleDeleteClick}>
+        <Button variant="danger" onClick={handleDeleteClick}>
           {t('modals.removeChannel.deleteButton')}
         </Button>
       </BootstrapModal.Footer>
@@ -167,32 +169,32 @@ const RenameChannelModal = ({ handleClose }) => {
       </BootstrapModal.Header>
       <BootstrapModal.Body>
         <Form onSubmit={formik.handleSubmit}>
-          <Form.Group className='mb-3'>
+          <Form.Group className="mb-3">
             <Form.Control
-              type='input'
+              type="input"
               ref={inputRef}
               value={formik.values.name}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               isInvalid={formik.errors.name && formik.touched.name}
               disabled={formik.isSubmitting}
-              name='name'
-              id='name'
+              name="name"
+              id="name"
             />
-            <Form.Label className='visually-hidden' htmlFor='name'>
+            <Form.Label className="visually-hidden" htmlFor="name">
               {t('modals.renameChannel.labelChannelName')}
             </Form.Label>
-            <Form.Control.Feedback type='invalid'>
+            <Form.Control.Feedback type="invalid">
               {formik.errors.name}
             </Form.Control.Feedback>
           </Form.Group>
-          <div className='d-flex justify-content-end'>
-            <Button variant='secondary' onClick={handleClose}>
+          <div className="d-flex justify-content-end">
+            <Button variant="secondary" onClick={handleClose}>
               {t('modals.cancelButton')}
             </Button>
             <Button
-              variant='primary'
-              type='submit'
+              variant="primary"
+              type="submit"
               disabled={formik.isSubmitting}
             >
               {t('modals.submitButton')}

@@ -20,7 +20,7 @@ const rollbarConfig = {
   payload: {
     environment: 'production',
   },
-}; */
+} */
 
 const init = async () => {
   const socket = io();

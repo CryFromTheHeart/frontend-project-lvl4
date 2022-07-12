@@ -12,7 +12,7 @@ import routes from './routes';
 import { useAuth } from './hooks';
 import ChatPage from './components/ChatPage';
 import Navbar from './components/Navbar';
-import { RegistrationPage } from './components/RegistrationPage';
+import RegistrationPage from './components/RegistrationPage';
 
 const ChoseChatOrLoginPage = () => {
   const authInfo = useAuth();

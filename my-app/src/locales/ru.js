@@ -65,7 +65,7 @@ const ru = {
       },
     },
     notifications: {
-      addChannel: 'Канал добавлен',
+      addChannel: 'Канал создан',
       removeChannel: 'Канал удалён',
       renameChannel: 'Канал переименован',
       unknown: 'Неизвестная ошибка',

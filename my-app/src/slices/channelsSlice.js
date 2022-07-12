@@ -1,6 +1,4 @@
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-
-const channelsAdapter = createEntityAdapter();
+import { createSlice } from '@reduxjs/toolkit';
 
 const defaultChannelId = 1;
 

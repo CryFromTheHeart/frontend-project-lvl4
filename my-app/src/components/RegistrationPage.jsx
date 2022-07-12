@@ -73,8 +73,8 @@ const RegistrationForm = () => {
           name="username"
           id="username"
           isInvalid={
-            (formik.errors.username && formik.touched.username) ||
-            registrationFailed
+            (formik.errors.username && formik.touched.username)
+            || registrationFailed
           }
           autoComplete="username"
           placeholder={t('registrationForm.labelUsername')}
@@ -97,8 +97,8 @@ const RegistrationForm = () => {
           name="password"
           id="password"
           isInvalid={
-            (formik.errors.password && formik.touched.password) ||
-            registrationFailed
+            (formik.errors.password && formik.touched.password)
+            || registrationFailed
           }
           autoComplete="current-password"
           placeholder={t('registrationForm.labelPassword')}
@@ -121,8 +121,8 @@ const RegistrationForm = () => {
           name="confirmPassword"
           id="confirmPassword"
           isInvalid={
-            (formik.errors.confirmPassword && formik.touched.confirmPassword) ||
-            registrationFailed
+            (formik.errors.confirmPassword && formik.touched.confirmPassword) 
+            || registrationFailed
           }
           autoComplete="current-confirmPassword"
           placeholder={t('registrationForm.labelConfirmPassword')}
@@ -148,8 +148,7 @@ const RegistrationForm = () => {
   );
 };
 
-export const RegistrationPage = () => {
-  return (
+const RegistrationPage = () => (
     <div className="d-flex flex-column h-100">
       <div className="container-fluid h-100">
         <div className="row justify-content-center align-content-center h-100">
@@ -164,4 +163,6 @@ export const RegistrationPage = () => {
       </div>
     </div>
   );
-};
+
+
+export default RegistrationPage;

@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { AuthContext } from '../contexts';
 
 const AuthProvider = ({ children }) => {
   const currentUser = JSON.parse(localStorage.getItem('user'));
   const [user, setUser] = useState(
-    currentUser ? { username: currentUser.username } : null
+    currentUser ? { username: currentUser.username } : null,
   );
 
   const logIn = (userData) => {
@@ -22,7 +22,9 @@ const AuthProvider = ({ children }) => {
     return { Authorization: `Bearer ${userData.token}` };
   };
   return (
-    <AuthContext.Provider value={{ user, logIn, logOut, getHeaderAuth }}>
+    <AuthContext.Provider value={
+      { user, logIn, logOut, getHeaderAuth }
+    }>
       {children}
     </AuthContext.Provider>
   );

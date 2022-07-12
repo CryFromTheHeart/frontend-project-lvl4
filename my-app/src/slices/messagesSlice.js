@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { actions as actionsIndex } from '.';
+import { actions as actionsIndex } from './channelsSlice';
 
 const initialState = { messages: [] };
 
@@ -20,7 +20,7 @@ const messagesSlice = createSlice({
     builder.addCase(actionsIndex.removeChannel, (state, { payload }) => {
       const { id } = payload;
       const newMessages = state.messages.filter(
-        (message) => message.channelId !== id
+        (message) => message.channelId !== id,
       );
       state.messages = newMessages;
     });

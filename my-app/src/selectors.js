@@ -7,7 +7,7 @@ export const getMessagesForCurrentChannel = (state) => {
   const { currentChannelId } = state.channelsInfo;
   const { messages } = state.messagesInfo;
   const currentMessages = messages.filter(
-    (message) => message.channelId === currentChannelId
+    (message) => message.channelId === currentChannelId,
   );
   return currentMessages;
 };
@@ -25,7 +25,7 @@ export const getChannelNames = (state) => {
 
 export const getChannelById = (channelId) => (state) => {
   const { channels } = state.channelsInfo;
-  const channel = channels.find((channel) => channel.id === channelId);
+  const channel = channels.find((channelInfo) => channelInfo.id === channelId);
   return channel;
 };
 

@@ -1,15 +1,16 @@
+import React from 'react';
 import { Provider } from 'react-redux';
 import { io } from 'socket.io-client';
 import i18n from 'i18next';
-import resources from './locales';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import leoProfanity from 'leo-profanity';
+import resources from './locales';
 import App from './App';
 import AuthProvider from './providers/AuthProviders';
 import store, { actions } from './slices/index';
 import { WebSocketsContext } from './contexts';
 
-/* import { Provider as RollbarProvider } from '@rollbar/react'; // <-- Provider imports 'rollbar' for us
+/* import { Provider as RollbarProvider } from '@rollbar/react';
 
 const rollbarConfig = {
   accessToken: '0ce6dec88b07487a9e7b017ddfd984f6',

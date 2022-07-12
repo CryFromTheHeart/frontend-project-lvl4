@@ -1,11 +1,11 @@
-import React from 'react';
-
-import { WebSocketsContext } from '../contexts';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { actions } from '../slices';
-import { useEffect } from 'react';
+import { WebSocketsContext } from '../contexts';
 
-export const WebSocketsProvider = ({ children, socket }) => {
+import { actions } from '../slices';
+
+
+const WebSocketsProvider = ({ children, socket }) => {
   const dispatch = useDispatch();
 
   const actionsWithSocket = {
@@ -24,3 +24,5 @@ export const WebSocketsProvider = ({ children, socket }) => {
     </WebSocketsContext.Provider>
   );
 };
+
+export default WebSocketsContext;

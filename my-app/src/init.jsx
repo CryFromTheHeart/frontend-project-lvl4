@@ -11,7 +11,6 @@ import store, { actions } from './slices/index';
 import { WebSocketsContext } from './contexts';
 
 /* import { Provider as RollbarProvider } from '@rollbar/react';
-
 const rollbarConfig = {
   accessToken: '0ce6dec88b07487a9e7b017ddfd984f6',
   captureUncaught: true,

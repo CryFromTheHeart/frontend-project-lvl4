@@ -32,8 +32,8 @@ const AddChannelModal = ({ handleClose }) => {
     onSubmit: async ({ name }) => {
       const filterName = leoProfanity.clean(name);
       try {
-        const newChannel = await addChannel({ name: filterName });
-        dispatch(actions.setCurrentChannel(newChannel.id));
+        await addChannel({ name: filterName });
+        //dispatch(actions.setCurrentChannel(newChannel.id));
         handleClose();
         toast.success(t('notifications.addChannel'));
       } catch (e) {

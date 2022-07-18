@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import NewMessageForm from './NewMessageForm';
@@ -15,7 +15,12 @@ const Message = ({ body, username }) => (
 const ChatBox = () => {
   const currentChannel = useSelector(getCurrentChannel);
   const messages = useSelector(getMessagesForCurrentChannel);
+  const boxRef = useRef();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    boxRef.current.scrollTop = boxRef.current.scrollHeight;
+  });
 
   return (
     <div className="d-flex flex-column h-100">
@@ -25,7 +30,11 @@ const ChatBox = () => {
           {t('messages.messageCount.count', { count: messages.length })}
         </span>
       </div>
-      <div id="messages-box" className="chat-messages overflow-auto px-5 ">
+      <div
+        ref={boxRef}
+        id="messages-box"
+        className="chat-messages overflow-auto px-5 "
+      >
         {messages.map(({ id, body, username }) => (
           <Message key={id} body={body} username={username} />
         ))}

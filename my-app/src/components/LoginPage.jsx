@@ -7,13 +7,13 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import routes from '../routes';
 import { useAuth } from '../hooks';
-// import { useRollbar } from '@rollbar/react';
+import { useRollbar } from '@rollbar/react';
 
 export const LoginForm = () => {
   const auth = useAuth();
   const [isAuthFailed, setAuthFailed] = useState(false);
   const { t } = useTranslation();
-  // const rollbar = useRollbar();
+  const rollbar = useRollbar();
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -27,7 +27,7 @@ export const LoginForm = () => {
         auth.logIn(response.data);
         navigate(routes.mainPagePath());
       } catch (err) {
-        // rollbar.error(err);
+        rollbar.error(err);
         if (!err.isAxiosError) {
           toast.error(t('notifications.unknown'));
           return;
@@ -85,7 +85,7 @@ export const LoginForm = () => {
         )}
       </Form.Group>
       <Button type="submit" variant="outline-primary" className="w-100 mb-3">
-        Войти
+        {t('loginForm.submitButton')}
       </Button>
     </Form>
   );
@@ -106,7 +106,7 @@ export const LoginPage = () => {
               </div>
               <div className="card-footer p-4">
                 <div className="text-center">
-                  Нет аккаунта?{' '}
+                  {t('loginForm.description')}{' '}
                   <Link to={routes.signupPath()}>{t('loginPage.regLink')}</Link>
                 </div>
               </div>

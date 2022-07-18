@@ -6,16 +6,18 @@ import { ArrowRightSquare } from 'react-bootstrap-icons';
 import leoProfanity from 'leo-profanity';
 import { toast } from 'react-toastify';
 import { useAuth, useWebSockets } from '../hooks';
-
-const validationSchema = yup.object().shape({
-  body: yup.string().trim(),
-});
+import { useTranslation } from 'react-i18next';
 
 const NewMessageForm = ({ channel }) => {
   const { user } = useAuth();
   const { sendMessage } = useWebSockets();
   const inputRef = useRef(null);
   const { username } = user;
+  const { t } = useTranslation();
+
+  const validationSchema = yup.object().shape({
+    body: yup.string().trim(),
+  });
 
   useEffect(() => {
     inputRef.current.focus();
@@ -38,7 +40,7 @@ const NewMessageForm = ({ channel }) => {
 
         formik.resetForm();
       } catch (e) {
-        toast.error('Не удалось отправить сообщение');
+        toast.error(t('newMessagesForm.error'));
       }
       formik.setSubmitting(false);
       inputRef.current.focus();
@@ -67,7 +69,9 @@ const NewMessageForm = ({ channel }) => {
         />
         <Button variant="group-vertical" type="submit" disabled={isInvalid}>
           <ArrowRightSquare size={20} />
-          <span className="visually-hidden">Отправить</span>
+          <span className="visually-hidden">
+            {t('newMessagesForm.submitButton')}
+          </span>
         </Button>
       </InputGroup>
     </Form>

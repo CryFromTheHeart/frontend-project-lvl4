@@ -15,15 +15,12 @@ const rollbarConfig = {
   accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
   captureUncaught: true,
   captureUnhandledRejections: true,
-
-  payload: {
-    environment: 'production',
-  },
+  environment: 'production',
 };
 
 const init = async () => {
   const socket = io();
-
+  console.log(process.env);
   leoProfanity.loadDictionary('ru');
 
   const i18nInstance = i18n.createInstance();
@@ -33,8 +30,14 @@ const init = async () => {
   });
 
   /* const actionsWithSocket = {
-    sendMessage: (message) =>
-      socket.emit('newMessage', message, (response) => response.data),
+    sendMessage: new Promise((resolve, reject) => {
+        socket.emit('newChannel', channel, (res) => {
+          if (res.status === 'ok') {
+            resolve(res.data);
+          }
+          reject();
+        });
+      }),
     addChannel: (channel) => socket.emit('newChannel', channel),
     removeChannel: (channel) => socket.emit('removeChannel', channel),
     renameChannel: (channel) => socket.emit('renameChannel', channel),
@@ -61,14 +64,9 @@ const init = async () => {
   const actionsWithSocket = {
     sendMessage: (message) => socket.emit('newMessage', message),
     addChannel: (channel) =>
-      new Promise((resolve, reject) => {
-        socket.emit('newChannel', channel, (res) => {
-          if (res.status === 'ok') {
-            resolve(res.data);
-          }
-          reject();
-        });
-      }),
+      socket.emit('newChannel', channel, (response) =>
+        store.dispatch(actions.setCurrentChannel(response.data.id))
+      ),
     removeChannel: (channel) =>
       socket.emit('removeChannel', channel, (res) => {
         if (res.status === 'ok') {

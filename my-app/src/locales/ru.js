@@ -21,11 +21,16 @@ const ru = {
       labelConfirmPassword: 'Подтвердите пароль',
       submitButton: 'Зарегистрироваться',
     },
+    newMessagesForm: {
+      submitButton: 'Отправить',
+      error: 'Не удалось отправить сообщение',
+    },
     loginForm: {
       header: 'Войти',
       labelUsername: 'Ваш ник',
       labelPassword: 'Пароль',
       submitButton: 'Войти',
+      description: 'Нет аккаунта?',
     },
     loginPage: {
       regLink: 'Регистрация',

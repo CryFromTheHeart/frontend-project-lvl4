@@ -10,16 +10,16 @@ import AuthProvider from './providers/AuthProviders';
 import store, { actions } from './slices/index';
 import { WebSocketsContext } from './contexts';
 
-/* import { Provider as RollbarProvider } from '@rollbar/react';
+import { Provider as RollbarProvider } from '@rollbar/react';
 const rollbarConfig = {
-  accessToken: '0ce6dec88b07487a9e7b017ddfd984f6',
+  accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
   captureUncaught: true,
   captureUnhandledRejections: true,
 
   payload: {
     environment: 'production',
   },
-} */
+};
 
 const init = async () => {
   const socket = io();
@@ -80,13 +80,15 @@ const init = async () => {
 
   return (
     <Provider store={store}>
-      <I18nextProvider i18n={i18nInstance}>
-        <WebSocketsContext.Provider value={actionsWithSocket}>
-          <AuthProvider>
-            <App />
-          </AuthProvider>
-        </WebSocketsContext.Provider>
-      </I18nextProvider>
+      <RollbarProvider config={rollbarConfig}>
+        <I18nextProvider i18n={i18nInstance}>
+          <WebSocketsContext.Provider value={actionsWithSocket}>
+            <AuthProvider>
+              <App />
+            </AuthProvider>
+          </WebSocketsContext.Provider>
+        </I18nextProvider>
+      </RollbarProvider>
     </Provider>
   );
 };

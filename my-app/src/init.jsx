@@ -32,12 +32,14 @@ const init = async () => {
     resources,
   });
 
-  const actionsWithSocket = {
-    sendMessage: (message) => socket.emit('newMessage', message),
+  /* const actionsWithSocket = {
+    sendMessage: (message) =>
+      socket.emit('newMessage', message, (response) => response.data),
     addChannel: (channel) => socket.emit('newChannel', channel),
     removeChannel: (channel) => socket.emit('removeChannel', channel),
     renameChannel: (channel) => socket.emit('renameChannel', channel),
   };
+ */
 
   socket.on('newMessage', (payload) => {
     store.dispatch(actions.messagesAddOne(payload));
@@ -55,6 +57,26 @@ const init = async () => {
     store.dispatch(actions.renameChannel(payload));
     // { id: 7, name: "new name channel", removable: true }
   });
+
+  const actionsWithSocket = {
+    sendMessage: (message) => socket.emit('newMessage', message),
+    addChannel: (channel) =>
+      new Promise((resolve, reject) => {
+        socket.emit('newChannel', channel, (res) => {
+          if (res.status === 'ok') {
+            resolve(res.data);
+          }
+          reject();
+        });
+      }),
+    removeChannel: (channel) =>
+      socket.emit('removeChannel', channel, (res) => {
+        if (res.status === 'ok') {
+          store.dispatch(actions.setDefaultChannel());
+        }
+      }),
+    renameChannel: (channel) => socket.emit('renameChannel', channel),
+  };
 
   return (
     <Provider store={store}>

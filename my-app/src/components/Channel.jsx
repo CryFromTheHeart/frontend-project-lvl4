@@ -14,7 +14,7 @@ const Channel = ({ channel, current }) => {
   };
 
   const handleRemoveChannel = (idRemoveChannel) => () => {
-    dispatch(actions.openModal({ type: 'rem', extra: idRemoveChannel }));
+    dispatch(actions.openModal({ type: 'remove', extra: idRemoveChannel }));
   };
 
   const handleChangeChannel = () => {

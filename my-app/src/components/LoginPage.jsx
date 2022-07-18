@@ -106,8 +106,7 @@ export const LoginPage = () => {
               </div>
               <div className="card-footer p-4">
                 <div className="text-center">
-                  Нет аккаунта?
-                  {' '}
+                  Нет аккаунта?{' '}
                   <Link to={routes.signupPath()}>{t('loginPage.regLink')}</Link>
                 </div>
               </div>

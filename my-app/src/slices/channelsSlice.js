@@ -20,7 +20,6 @@ const channelsSlice = createSlice({
     },
     addChannel: (state, { payload }) => {
       state.channels.push(payload);
-      state.currentChannelId = payload.id;
     },
     setCurrentChannel: (state, { payload }) => {
       state.currentChannelId = payload;
@@ -29,12 +28,16 @@ const channelsSlice = createSlice({
       const { id } = payload;
       const newChannels = state.channels.filter((channel) => channel.id !== id);
       state.channels = newChannels;
-      state.currentChannelId = defaultChannelId;
     },
     renameChannel: (state, { payload }) => {
       const { id, name } = payload;
-      const channel = state.channels.find((channelInfo) => channelInfo.id === id);
+      const channel = state.channels.find(
+        (channelInfo) => channelInfo.id === id
+      );
       channel.name = name;
+    },
+    setDefaultChannel: (state) => {
+      state.currentChannelId = defaultChannelId;
     },
   },
 });

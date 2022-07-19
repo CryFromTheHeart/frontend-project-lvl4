@@ -5,9 +5,10 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import { useRollbar } from '@rollbar/react';
 import routes from '../routes';
 import { useAuth } from '../hooks';
-import { useRollbar } from '@rollbar/react';
+
 
 export const LoginForm = () => {
   const auth = useAuth();
@@ -106,7 +107,8 @@ export const LoginPage = () => {
               </div>
               <div className="card-footer p-4">
                 <div className="text-center">
-                  {t('loginForm.description')}{' '}
+                  {t('loginForm.description')}
+                  {' '}
                   <Link to={routes.signupPath()}>{t('loginPage.regLink')}</Link>
                 </div>
               </div>

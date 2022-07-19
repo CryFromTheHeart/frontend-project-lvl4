@@ -4,9 +4,10 @@ import { Form, InputGroup, Button } from 'react-bootstrap';
 import * as yup from 'yup';
 import { ArrowRightSquare } from 'react-bootstrap-icons';
 import leoProfanity from 'leo-profanity';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useAuth, useWebSockets } from '../hooks';
-import { useTranslation } from 'react-i18next';
+
 
 const NewMessageForm = ({ channel }) => {
   const { user } = useAuth();

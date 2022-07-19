@@ -32,7 +32,7 @@ const channelsSlice = createSlice({
     renameChannel: (state, { payload }) => {
       const { id, name } = payload;
       const channel = state.channels.find(
-        (channelInfo) => channelInfo.id === id
+        (channelInfo) => channelInfo.id === id,
       );
       channel.name = name;
     },

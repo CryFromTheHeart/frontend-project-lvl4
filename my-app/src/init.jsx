@@ -4,23 +4,25 @@ import { io } from 'socket.io-client';
 import i18n from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import leoProfanity from 'leo-profanity';
+import { Provider as RollbarProvider } from '@rollbar/react';
 import resources from './locales';
 import App from './App';
 import AuthProvider from './providers/AuthProviders';
 import store, { actions } from './slices/index';
 import { WebSocketsContext } from './contexts';
 
-import { Provider as RollbarProvider } from '@rollbar/react';
-const rollbarConfig = {
-  accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
-  captureUncaught: true,
-  captureUnhandledRejections: true,
-  environment: 'production',
-};
+
 
 const init = async () => {
+  const rollbarConfig = {
+    accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
+    captureUncaught: true,
+    captureUnhandledRejections: true,
+    environment: 'production',
+  };
+
   const socket = io();
-  console.log(process.env);
+
   leoProfanity.loadDictionary('ru');
 
   const i18nInstance = i18n.createInstance();
@@ -44,13 +46,11 @@ const init = async () => {
 
   const actionsWithSocket = {
     sendMessage: (message) => socket.emit('newMessage', message),
-    addChannel: (channel) =>
-      socket.emit('newChannel', channel, (response) => {
+    addChannel: (channel) => socket.emit('newChannel', channel, (response) => {
         store.dispatch(actions.addChannel(response.data));
         store.dispatch(actions.setCurrentChannel(response.data.id));
       }),
-    removeChannel: (channel) =>
-      socket.emit('removeChannel', channel, (res) => {
+    removeChannel: (channel) => socket.emit('removeChannel', channel, (res) => {
         if (res.status === 'ok') {
           store.dispatch(actions.setDefaultChannel());
         }

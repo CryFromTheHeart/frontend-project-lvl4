@@ -92,7 +92,7 @@ const RemoveChannelModal = ({ handleClose }) => {
       await removeChannel({ id: extra });
       toast.success(t('notifications.removeChannel'));
     } catch {
-      toast.error('Что то пошло не так');
+      toast.error(t('modal.removeChannel.error'));
     }
     handleClose();
   };

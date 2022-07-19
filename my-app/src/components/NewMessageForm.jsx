@@ -64,7 +64,7 @@ const NewMessageForm = ({ channel }) => {
           value={formik.values.body}
           name="body"
           aria-label="Новое сообщение"
-          placeholder="Введите сообщение..."
+          placeholder={t('newMessagesForm.placeholder')}
           className="border-0 p-0 ps-2"
         />
         <Button variant="group-vertical" type="submit" disabled={isInvalid}>

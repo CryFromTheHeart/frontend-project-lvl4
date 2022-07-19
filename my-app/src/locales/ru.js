@@ -23,6 +23,7 @@ const ru = {
     },
     newMessagesForm: {
       submitButton: 'Отправить',
+      placeholder: 'Введите сообщение...',
       error: 'Не удалось отправить сообщение',
     },
     loginForm: {
@@ -61,6 +62,7 @@ const ru = {
         label: 'Имя канала',
       },
       removeChannel: {
+        error: 'Не удалось удалить канал',
         header: 'Добавить канал',
         body: 'Уверены ?',
         deleteButton: 'Удалить',

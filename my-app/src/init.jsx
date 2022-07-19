@@ -33,6 +33,10 @@ const init = async () => {
     store.dispatch(actions.messagesAddOne(payload));
     // payload { body: "new message", channelId: 7, id: 8, username: "admin" }
   });
+  socket.on('newChannel', (payload) => {
+    store.dispatch(actions.addChannel(payload));
+    // { id: 7, name: "name channel", removable: true }
+  });
   socket.on('removeChannel', (payload) => {
     store.dispatch(actions.removeChannel(payload));
     // { id: 6 };
@@ -41,11 +45,10 @@ const init = async () => {
     store.dispatch(actions.renameChannel(payload));
     // { id: 7, name: "new name channel", removable: true }
   });
-
+  
   const actionsWithSocket = {
     sendMessage: (message) => socket.emit('newMessage', message),
     addChannel: (channel) => socket.emit('newChannel', channel, (response) => {
-      store.dispatch(actions.addChannel(response.data));
       store.dispatch(actions.setCurrentChannel(response.data.id));
     }),
     removeChannel: (channel) => socket.emit('removeChannel', channel, (res) => {

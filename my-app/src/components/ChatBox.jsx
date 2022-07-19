@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Spinner } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import NewMessageForm from './NewMessageForm';
@@ -17,12 +18,14 @@ const ChatBox = () => {
   const messages = useSelector(getMessagesForCurrentChannel);
   const boxRef = useRef();
   const { t } = useTranslation();
-
+  
   useEffect(() => {
-    boxRef.current.scrollTop = boxRef.current.scrollHeight;
+    if (currentChannel) {
+      boxRef.current.scrollTop = boxRef.current.scrollHeight;
+    }
   });
 
-  return (
+  return currentChannel ? (
     <div className="d-flex flex-column h-100">
       <div className="bg-light mb-4 p-3 shadow-sm small">
         <p className="m-0 fw-bold">
@@ -46,6 +49,12 @@ const ChatBox = () => {
       <div className="mt-auto px-5 py-3">
         <NewMessageForm channel={currentChannel} />
       </div>
+    </div>
+  ) : (
+    <div className="h-100 d-flex justify-content-center align-items-center">
+      <Spinner animation="border" role="status" variant="primary">
+        <span className="visually-hidden">{t('chat.chatLoading')}</span>
+      </Spinner>
     </div>
   );
 };

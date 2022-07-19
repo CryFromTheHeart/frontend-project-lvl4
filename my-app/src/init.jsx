@@ -50,11 +50,7 @@ const init = async () => {
     addChannel: (channel) => socket.emit('newChannel', channel, (response) => {
       store.dispatch(actions.setCurrentChannel(response.data.id));
     }),
-    removeChannel: (channel) => socket.emit('removeChannel', channel, (res) => {
-      if (res.status === 'ok') {
-        store.dispatch(actions.setDefaultChannel());
-      }
-    }),
+    removeChannel: (channel) => socket.emit('removeChannel', channel),
     renameChannel: (channel) => socket.emit('renameChannel', channel),
   };
 

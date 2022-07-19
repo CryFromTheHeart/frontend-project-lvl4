@@ -29,28 +29,9 @@ const init = async () => {
     resources,
   });
 
-  /* const actionsWithSocket = {
-    sendMessage: new Promise((resolve, reject) => {
-        socket.emit('newChannel', channel, (res) => {
-          if (res.status === 'ok') {
-            resolve(res.data);
-          }
-          reject();
-        });
-      }),
-    addChannel: (channel) => socket.emit('newChannel', channel),
-    removeChannel: (channel) => socket.emit('removeChannel', channel),
-    renameChannel: (channel) => socket.emit('renameChannel', channel),
-  };
- */
-
   socket.on('newMessage', (payload) => {
     store.dispatch(actions.messagesAddOne(payload));
     // payload { body: "new message", channelId: 7, id: 8, username: "admin" }
-  });
-  socket.on('newChannel', (payload) => {
-    store.dispatch(actions.addChannel(payload));
-    // { id: 6, name: "new channel", removable: true }
   });
   socket.on('removeChannel', (payload) => {
     store.dispatch(actions.removeChannel(payload));
@@ -64,9 +45,10 @@ const init = async () => {
   const actionsWithSocket = {
     sendMessage: (message) => socket.emit('newMessage', message),
     addChannel: (channel) =>
-      socket.emit('newChannel', channel, (response) =>
-        store.dispatch(actions.setCurrentChannel(response.data.id))
-      ),
+      socket.emit('newChannel', channel, (response) => {
+        store.dispatch(actions.addChannel(response.data));
+        store.dispatch(actions.setCurrentChannel(response.data.id));
+      }),
     removeChannel: (channel) =>
       socket.emit('removeChannel', channel, (res) => {
         if (res.status === 'ok') {

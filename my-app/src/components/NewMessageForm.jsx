@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useAuth, useWebSockets } from '../hooks';
 
-
 const NewMessageForm = ({ channel }) => {
   const { user } = useAuth();
   const { sendMessage } = useWebSockets();

@@ -11,8 +11,6 @@ import AuthProvider from './providers/AuthProviders';
 import store, { actions } from './slices/index';
 import { WebSocketsContext } from './contexts';
 
-
-
 const init = async () => {
   const rollbarConfig = {
     accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
@@ -47,14 +45,14 @@ const init = async () => {
   const actionsWithSocket = {
     sendMessage: (message) => socket.emit('newMessage', message),
     addChannel: (channel) => socket.emit('newChannel', channel, (response) => {
-        store.dispatch(actions.addChannel(response.data));
-        store.dispatch(actions.setCurrentChannel(response.data.id));
-      }),
+      store.dispatch(actions.addChannel(response.data));
+      store.dispatch(actions.setCurrentChannel(response.data.id));
+    }),
     removeChannel: (channel) => socket.emit('removeChannel', channel, (res) => {
-        if (res.status === 'ok') {
-          store.dispatch(actions.setDefaultChannel());
-        }
-      }),
+      if (res.status === 'ok') {
+        store.dispatch(actions.setDefaultChannel());
+      }
+    }),
     renameChannel: (channel) => socket.emit('renameChannel', channel),
   };
 

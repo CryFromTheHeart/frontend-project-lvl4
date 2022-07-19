@@ -9,7 +9,6 @@ import { useRollbar } from '@rollbar/react';
 import routes from '../routes';
 import { useAuth } from '../hooks';
 
-
 export const LoginForm = () => {
   const auth = useAuth();
   const [isAuthFailed, setAuthFailed] = useState(false);

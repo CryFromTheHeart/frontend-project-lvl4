@@ -45,7 +45,6 @@ const init = async () => {
     store.dispatch(actions.renameChannel(payload));
     // { id: 7, name: "new name channel", removable: true }
   });
-  
   const actionsWithSocket = {
     sendMessage: (message) => socket.emit('newMessage', message),
     addChannel: (channel) => socket.emit('newChannel', channel, (response) => {

@@ -18,7 +18,6 @@ const ChatBox = () => {
   const messages = useSelector(getMessagesForCurrentChannel);
   const boxRef = useRef();
   const { t } = useTranslation();
-  
   useEffect(() => {
     if (currentChannel) {
       boxRef.current.scrollTop = boxRef.current.scrollHeight;

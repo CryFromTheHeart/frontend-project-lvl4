@@ -14,7 +14,6 @@ const AddChannelModal = ({ handleClose }) => {
   const { t } = useTranslation();
   const channelNames = useSelector(getChannelNames);
   const { addChannel } = useWebSockets();
-  const dispatch = useDispatch();
 
   const validationSchema = yup.object().shape({
     name: yup
@@ -33,7 +32,6 @@ const AddChannelModal = ({ handleClose }) => {
       const filterName = leoProfanity.clean(name);
       try {
         await addChannel({ name: filterName });
-        // dispatch(actions.setCurrentChannel(newChannel.id));
         handleClose();
         toast.success(t('notifications.addChannel'));
       } catch (e) {
